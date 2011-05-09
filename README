@@ -1,9 +1,9 @@
 How to use this:
 ----------------
 
-1) Make sure that there are no spaces in the path to which this archive 
-has been extracted. A bug in the Maven Tycho publishing process will 
-cause problems if you have spaces in your path.
+1) Make sure that there are no spaces in the path where you cloned
+this repo. A bug in the Maven Tycho publishing process will cause
+problems if you have spaces in your path.
 
 2) Start the Jetty web server using:
 
