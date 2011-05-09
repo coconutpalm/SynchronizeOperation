@@ -1,0 +1,6 @@
+1304369092351	Delete element
+1304370763450	Extract local variable 'UPDATE_SITE_URL'
+1304374871424	Delete element
+1304386000387	Extract local variable 'features'
+1304720420843	Rename method 'installFromFixturesReturnInstalledFeatures'
+1304720847859	Rename method 'installFromFixturesReturnInstalledIUs'

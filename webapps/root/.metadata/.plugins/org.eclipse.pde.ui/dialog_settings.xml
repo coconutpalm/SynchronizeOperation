@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="false" key="initLaunch"/>
+	<item value="false" key="generateActivator"/>
+	<item value="true" key="uiPlugin"/>
+	<item value="false" key="rcpPlugin"/>
+	<item value="false" key="apiAnalysis"/>
+	<item value="false" key="osgiProject"/>
+	<item value="" key="targetName"/>
+	<section name="org.eclipse.pde.ui.dialogs.PluginSelectionDialog">
+		<item value="true" key="ShowStatusLine"/>
+		<item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0D;&#x0A;&lt;History/&gt;" key="History"/>
+		<section name="DialogBoundsSettings">
+			<item value="600" key="DIALOG_WIDTH"/>
+			<item value="151" key="DIALOG_Y_ORIGIN"/>
+			<item value="112" key="DIALOG_X_ORIGIN"/>
+			<item value="500" key="DIALOG_HEIGHT"/>
+			<item value="1|Tahoma|8.25|0|WINDOWS|1|-11|0|0|0|400|0|0|0|1|0|0|0|0|Tahoma" key="DIALOG_FONT_NAME"/>
+		</section>
+	</section>
+	<section name="ProductExportWizard">
+		<item value="false" key="exportSource"/>
+		<item value="true" key="syncProduct"/>
+		<item value="/test.app.product/test.app.product" key="productConfig1"/>
+		<item value="Generate source bundles" key="exportSourceFormat"/>
+		<item value="true" key="p2metadata"/>
+		<item value="true" key="exportDirectory"/>
+		<item value="/test.app.product/test.app.product" key="productConfig0"/>
+		<item value="c:\temp\test.app" key="destination1"/>
+		<item value="c:\temp\test.app" key="destination0"/>
+		<item value="true" key="allowBinaryCycles"/>
+		<item value="eclipse" key="productRoot"/>
+	</section>
+	<section name="quick_assist_proposal_size">
+	</section>
+</section>

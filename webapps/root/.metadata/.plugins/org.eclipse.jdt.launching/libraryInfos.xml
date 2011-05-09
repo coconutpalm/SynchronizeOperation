@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<libraryInfos>
+<libraryInfo home="C:\java\jre6u23" version="1.6.0_23">
+<bootpath>
+<entry path="C:\java\jre6u23\lib\resources.jar"/>
+<entry path="C:\java\jre6u23\lib\rt.jar"/>
+<entry path="C:\java\jre6u23\lib\sunrsasign.jar"/>
+<entry path="C:\java\jre6u23\lib\jsse.jar"/>
+<entry path="C:\java\jre6u23\lib\jce.jar"/>
+<entry path="C:\java\jre6u23\lib\charsets.jar"/>
+<entry path="C:\java\jre6u23\lib\modules\jdk.boot.jar"/>
+<entry path="C:\java\jre6u23\classes"/>
+</bootpath>
+<extensionDirs>
+<entry path="C:\java\jre6u23\lib\ext"/>
+<entry path="C:\WINDOWS\Sun\Java\lib\ext"/>
+</extensionDirs>
+<endorsedDirs>
+<entry path="C:\java\jre6u23\lib\endorsed"/>
+</endorsedDirs>
+</libraryInfo>
+</libraryInfos>

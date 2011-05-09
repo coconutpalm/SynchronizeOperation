@@ -1,0 +1,5 @@
+<p>This package implements the standard operations on an option monad.</p>
+
+<p>Note that this implementation isn't strictly a monad nor does it obey the
+monad laws; however we call it that because of its heritage and because one
+day we might decide to complete the implementation.</p>

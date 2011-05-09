@@ -1,0 +1,11 @@
+1304353559690	Delete elements
+1304389810017	Change method 'doInstallOperation'
+1304389968955	Infer generic type arguments
+1304524783295	Extract local variable 'siteUrls'
+1304531087841	Extract local variable 'allRepos'
+1304537444642	Move compilation units
+1304537451501	Move file
+1304537453892	Delete element
+1304537938098	Rename method 'getReason'
+1304541737177	Extract local variable 'installedFeatures'
+1304701305775	Extract local variable 'configuredFeatures'
