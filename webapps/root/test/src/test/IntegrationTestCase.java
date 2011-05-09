@@ -17,7 +17,7 @@ import junit.framework.TestCase;
 public class IntegrationTestCase extends TestCase {
 
 	// Names of launchers: Maven / Eclipse IDE defaults respectively
-	private static final String LAUNCHER_EXE = "launcher.exe";
+	private static final String LAUNCHER_EXE = "eclipse";
 	private static final String ECLIPSE_EXE = "eclipse.exe";
 	
 	private final String SITE_URL_PROPERTY = "siteURL";

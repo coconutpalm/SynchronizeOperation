@@ -10,7 +10,8 @@ public class TestSynchronizeOperation extends IntegrationTestCase {
 
 	// The variables we use to find the test product during a Maven/Tycho build.
 	private static final String FIXTURE_LOCATION_PROP = "osgi.install.area";
-	private static final String RELATIVE_LOCATION = "test.app.product/target/products/test.app.product/win32/win32/x86";
+	private static final String RELATIVE_LOCATION_WIN32 = "test.app.product/target/products/test.app.product/win32/win32/x86";
+	private static final String RELATIVE_LOCATION_LINUX = "test.app.product/target/products/test.app.product/linux/gtk/x86";
 
 	// This assumes that the whole workspace is located inside a Jetty or similar web root
 	public static final String FIXTURE_ROOT = "\"http://localhost:8080/";
@@ -29,11 +30,20 @@ public class TestSynchronizeOperation extends IntegrationTestCase {
 			System.err.println("NOTFOUND: " + FIXTURE_LOCATION_PROP + " env var; using default: " + FIXTURE_LOCATION);
 			return;
 		}
-		systemPropertyFixtureLocation = systemPropertyFixtureLocation.substring("file:/".length());
+		systemPropertyFixtureLocation = systemPropertyFixtureLocation.substring("file:".length());
+		boolean win32 = false;
+		if (systemPropertyFixtureLocation.indexOf(":") > 0) {
+		    systemPropertyFixtureLocation = systemPropertyFixtureLocation.substring(1);
+		    win32 = true;
+		}
 		systemPropertyFixtureLocation = systemPropertyFixtureLocation.substring(0, 
 				systemPropertyFixtureLocation.length() - "test/target/work/".length());
 		System.err.println("ROOT : " + systemPropertyFixtureLocation);
-		FIXTURE_LOCATION = systemPropertyFixtureLocation + RELATIVE_LOCATION;
+		if (win32) {
+		    FIXTURE_LOCATION = systemPropertyFixtureLocation + RELATIVE_LOCATION_WIN32;
+		} else {
+		    FIXTURE_LOCATION = systemPropertyFixtureLocation + RELATIVE_LOCATION_LINUX;
+		}
 		System.err.println("FOUND:  " + systemPropertyFixtureLocation);
 		FIXTURE_LOCATION_BIN = FIXTURE_LOCATION;
 		FIXTURE_LOCATION_REPO = " file:///" + systemPropertyFixtureLocation + "test.app.product/target/repository\"";
