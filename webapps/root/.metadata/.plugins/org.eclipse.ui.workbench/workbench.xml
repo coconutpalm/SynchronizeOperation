@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="32" version="2.0">
+<workbench progressCount="22" version="2.0">
 <workbenchAdvisor/>
 <window height="768" maximized="true" width="1024" x="88" y="88">
 <fastViewData fastViewLocation="1024"/>
@@ -17,11 +17,11 @@
 <coolItem id="org.eclipse.jdt.ui.JavaElementCreationActionSet" itemType="typeToolBarContribution" x="75" y="22"/>
 <coolItem id="org.eclipse.pde.ui.featureEditor" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="org.eclipse.pde.ui.manifestEditor" itemType="typePlaceholder" x="39" y="22"/>
-<coolItem id="org.eclipse.pde.ui.productEditor" itemType="typePlaceholder" x="-1" y="-1"/>
+<coolItem id="org.eclipse.pde.ui.productEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="org.eclipse.pde.ui.siteEditor" itemType="typePlaceholder" x="-1" y="-1"/>
-<coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="98" y="22"/>
-<coolItem id="org.eclipse.ui.DefaultTextEditor" itemType="typePlaceholder" x="-1" y="-1"/>
-<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="131" y="22"/>
+<coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="75" y="22"/>
+<coolItem id="org.eclipse.ui.DefaultTextEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="108" y="22"/>
 <coolItem id="org.eclipse.wst.xml.ui.perspective.NewFileToolBar" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="org.eclipse.wst.xml.ui.design.DesignToolBar" itemType="typeToolBarContribution" x="62" y="22"/>
 <coolItem id="group.nav" itemType="typeGroupMarker"/>
@@ -41,25 +41,34 @@
 <part id="1"/>
 <part id="3"/>
 <part id="2"/>
+<part id="4"/>
+<part id="5"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Application.java" partName="Application.java" path="C:/checkouts/installertest/webapps/root/test.app/src/test/app/Application.java" title="Application.java" tooltip="test.app/src/test/app/Application.java" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Application.java" partName="Application.java" path="C:/checkouts/SynchronizeOperation/webapps/root/test.app/src/test/app/Application.java" title="Application.java" tooltip="test.app/src/test/app/Application.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/test.app/src/test/app/Application.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="8511" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="9269" selectionTopPixel="2963"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="IntegrationTestCase.java" partName="IntegrationTestCase.java" path="C:/checkouts/installertest/webapps/root/test/src/test/IntegrationTestCase.java" title="IntegrationTestCase.java" tooltip="test/src/test/IntegrationTestCase.java" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="IntegrationTestCase.java" partName="IntegrationTestCase.java" path="C:/checkouts/SynchronizeOperation/webapps/root/test/src/test/IntegrationTestCase.java" title="IntegrationTestCase.java" tooltip="test/src/test/IntegrationTestCase.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/test/src/test/IntegrationTestCase.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="739" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="771" selectionTopPixel="0"/>
 </editor>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Activator.java" partName="Activator.java" path="C:/checkouts/installertest/webapps/root/test.app/src/test/app/Activator.java" title="Activator.java" tooltip="test.app/src/test/app/Activator.java" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Activator.java" partName="Activator.java" path="C:/checkouts/SynchronizeOperation/webapps/root/test.app/src/test/app/Activator.java" title="Activator.java" tooltip="test.app/src/test/app/Activator.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/test.app/src/test/app/Activator.java"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="854" selectionTopPixel="0"/>
 </editor>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="TestSynchronizeOperation.java" partName="TestSynchronizeOperation.java" path="C:/checkouts/installertest/webapps/root/test/src/test/TestSynchronizeOperation.java" title="TestSynchronizeOperation.java" tooltip="test/src/test/TestSynchronizeOperation.java" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="TestSynchronizeOperation.java" partName="TestSynchronizeOperation.java" path="C:/checkouts/SynchronizeOperation/webapps/root/test/src/test/TestSynchronizeOperation.java" title="TestSynchronizeOperation.java" tooltip="test/src/test/TestSynchronizeOperation.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/test/src/test/TestSynchronizeOperation.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="969" selectionTopPixel="51"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="376" selectionTopPixel="78"/>
+</editor>
+<editor id="org.eclipse.pde.ui.productEditor" name="test.app.product" partName="test.app.product" path="C:/checkouts/SynchronizeOperation/webapps/root/test.app.product/test.app.product" title="test.app.product" tooltip="test.app.product/test.app.product" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/test.app.product/test.app.product"/>
+</editor>
+<editor id="org.eclipse.ui.DefaultTextEditor" name="pom.xml" partName="pom.xml" path="C:/checkouts/SynchronizeOperation/webapps/root/test.releng/pom.xml" title="pom.xml" tooltip="test.releng/pom.xml" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/test.releng/pom.xml"/>
+<editorState selectionHorizontalPixel="0" selectionLength="11" selectionOffset="1138" selectionTopPixel="0"/>
 </editor>
 </editors>
 <views>
@@ -72,9 +81,9 @@
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
 <expanded>
-<category IMemento.internal.id="Warnings (31 items)"/>
-<category IMemento.internal.id="Warnings"/>
 <category IMemento.internal.id="Errors"/>
+<category IMemento.internal.id="Warnings"/>
+<category IMemento.internal.id="Warnings (30 items)"/>
 </expanded>
 <columnWidths org.eclipse.ui.ide.locationField="75" org.eclipse.ui.ide.markerType="75" org.eclipse.ui.ide.pathField="100" org.eclipse.ui.ide.resourceField="75" org.eclipse.ui.ide.severityAndDescriptionField="250"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
@@ -88,7 +97,7 @@
 <viewState/>
 </view>
 <view id="org.eclipse.jdt.ui.PackageExplorer" partName="Package Explorer">
-<viewState group_libraries="1" layout="2" linkWithEditor="1" rootMode="1" workingSetName="Aggregate for window 1304353352383">
+<viewState group_libraries="1" layout="2" linkWithEditor="0" rootMode="1" workingSetName="Aggregate for window 1304353352383">
 <customFilters userDefinedPatternsEnabled="false">
 <xmlDefinedFilters>
 <child filterId="org.eclipse.jdt.ui.PackageExplorer.LibraryFilter" isEnabled="false"/>
@@ -112,7 +121,6 @@
 <child filterId="org.eclipse.jdt.ui.PackageExplorer.EmptyLibraryContainerFilter" isEnabled="true"/>
 <child filterId="org.eclipse.pde.ui.BinaryProjectFilter1" isEnabled="false"/>
 <child filterId="org.eclipse.jdt.ui.PackageExplorer.SyntheticMembersFilter" isEnabled="true"/>
-<child filterId="org.eclipse.mylyn.java.ui.MembersFilter" isEnabled="false"/>
 </xmlDefinedFilters>
 </customFilters>
 </viewState>
@@ -141,9 +149,6 @@
 <alwaysOnActionSet id="org.eclipse.debug.ui.breakpointActionSet"/>
 <alwaysOnActionSet id="org.eclipse.jdt.debug.ui.JDTDebugActionSet"/>
 <alwaysOnActionSet id="org.eclipse.jdt.junit.JUnitActionSet"/>
-<alwaysOnActionSet id="org.eclipse.mylyn.context.ui.actionSet"/>
-<alwaysOnActionSet id="org.eclipse.mylyn.doc.actionSet"/>
-<alwaysOnActionSet id="org.eclipse.mylyn.tasks.ui.navigation"/>
 <show_view_action id="org.eclipse.jdt.ui.PackageExplorer"/>
 <show_view_action id="org.eclipse.jdt.ui.TypeHierarchy"/>
 <show_view_action id="org.eclipse.jdt.ui.SourceView"/>
@@ -184,7 +189,7 @@
 <view id="org.eclipse.ui.views.ProblemView" ratio="0.3"/>
 <view id="org.eclipse.jdt.ui.JavadocView" ratio="0.3"/>
 <view id="org.eclipse.jdt.ui.SourceView" ratio="0.3"/>
-<view id="org.eclipse.ui.console.ConsoleView" ratio="0.5100529"/>
+<view id="org.eclipse.ui.console.ConsoleView" ratio="0.5086888"/>
 <view id="org.eclipse.ui.views.ProgressView" ratio="0.3"/>
 </fastViews>
 </fastViewBar>
@@ -219,7 +224,7 @@
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.19075452" ratioLeft="359" ratioRight="1523" relationship="2" relative="left"/>
 <info folder="true" part="bottom" ratio="0.7496206" ratioLeft="494" ratioRight="165" relationship="4" relative="org.eclipse.ui.editorss">
-<folder appearance="2" expanded="2">
+<folder appearance="2" expanded="0">
 <page content="org.eclipse.ui.views.ProblemView" label="LabelNotFound"/>
 <page content="org.eclipse.jdt.ui.JavadocView" label="LabelNotFound"/>
 <page content="org.eclipse.jdt.ui.SourceView" label="LabelNotFound"/>
@@ -245,130 +250,158 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart" path="/test.releng/pom.xml"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart" path="/test/pom.xml"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/test.app/src/test/app/Application.java"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/test/src/test/TestSynchronizeOperation.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart" path="/test.app/pom.xml"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart" path="/test.app.feature/pom.xml"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart" path="/test.app.product/pom.xml"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/test.app/src/test/app/Activator.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/test/src/test/TestSynchronizeOperation.java"/>
+<editor factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" org.eclipse.jdt.ui.ClassFileIdentifier="=test.app/C:\/java\/jre6u23\/lib\/rt.jar&lt;java.lang(System.class"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.pde.ui.productEditor" path="/test.app.product/test.app.product"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.pde.ui.featureEditor" path="/test.app.feature/feature.xml"/>
+<editor factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" org.eclipse.jdt.ui.ClassFileIdentifier="=test.app/C:\/eclipse\/3.7.0RC1I1\/plugins\/org.eclipse.equinox.p2.operations_2.1.0.v20110511-1821.jar&lt;org.eclipse.equinox.p2.operations(SynchronizeOperation.class"/>
 </editors>
-<item historyLabel="pom.xml" index="1"/>
-<item historyLabel="TestSynchronizeOperation.java" index="2">
+<item historyLabel="TestSynchronizeOperation.java" index="1">
+<position info="not_deleted" x="1066" y="2"/>
+</item>
+<item historyLabel="Application.java" index="0">
+<position info="not_deleted" x="7054" y="0"/>
+</item>
+<item historyLabel="Application.java" index="0">
+<position info="not_deleted" x="7084" y="0"/>
+</item>
+<item historyLabel="Application.java" index="0">
+<position info="not_deleted" x="7226" y="0"/>
+</item>
+<item historyLabel="Application.java" index="0">
+<position info="not_deleted" x="7766" y="0"/>
+</item>
+<item historyLabel="Application.java" index="0">
+<position info="not_deleted" x="7966" y="0"/>
+</item>
+<item historyLabel="Application.java" index="0">
+<position info="not_deleted" x="8160" y="0"/>
+</item>
+<item historyLabel="Application.java" index="0">
+<position info="not_deleted" x="8102" y="0"/>
+</item>
+<item historyLabel="Activator.java" index="2">
+<position info="not_deleted" x="854" y="0"/>
+</item>
+<item historyLabel="TestSynchronizeOperation.java" index="3">
+<position info="not_deleted" x="1066" y="2"/>
+</item>
+<item historyLabel="TestSynchronizeOperation.java" index="3">
+<position info="not_deleted" x="1340" y="0"/>
+</item>
+<item historyLabel="Application.java" index="0">
+<position info="not_deleted" x="7651" y="0"/>
+</item>
+<item historyLabel="Application.java" index="0">
+<position info="not_deleted" x="7072" y="0"/>
+</item>
+<item historyLabel="Application.java" index="0">
+<position info="not_deleted" x="7086" y="0"/>
+</item>
+<item historyLabel="Application.java" index="0">
+<position info="not_deleted" x="7097" y="0"/>
+</item>
+<item historyLabel="Application.java" index="0">
+<position info="not_deleted" x="7157" y="0"/>
+</item>
+<item historyLabel="System.class" index="4">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Application.java" index="0">
+<position info="not_deleted" x="7157" y="0"/>
+</item>
+<item historyLabel="Application.java" index="0">
+<position info="not_deleted" x="7953" y="1"/>
+</item>
+<item historyLabel="Application.java" index="0">
+<position info="not_deleted" x="7796" y="0"/>
+</item>
+<item historyLabel="Application.java" index="0">
+<position info="not_deleted" x="7797" y="0"/>
+</item>
+<item historyLabel="Application.java" index="0">
+<position info="not_deleted" x="6620" y="0"/>
+</item>
+<item historyLabel="Activator.java" index="2">
+<position info="not_deleted" x="854" y="0"/>
+</item>
+<item historyLabel="TestSynchronizeOperation.java" index="3">
+<position info="not_deleted" x="376" y="0"/>
+</item>
+<item historyLabel="Application.java" index="0">
+<position info="not_deleted" x="7193" y="0"/>
+</item>
+<item historyLabel="Application.java" index="0">
+<position info="not_deleted" x="12824" y="0"/>
+</item>
+<item historyLabel="Application.java" index="0">
+<position info="not_deleted" x="7269" y="107"/>
+</item>
+<item historyLabel="Application.java" index="0">
+<position info="not_deleted" x="7209" y="0"/>
+</item>
+<item historyLabel="Application.java" index="0">
+<position info="not_deleted" x="12774" y="66"/>
+</item>
+<item historyLabel="Application.java" index="0">
+<position info="not_deleted" x="7269" y="107"/>
+</item>
+<item historyLabel="Application.java" index="0">
+<position info="not_deleted" x="7187" y="0"/>
+</item>
+<item historyLabel="Application.java" index="0">
+<position info="not_deleted" x="12774" y="66"/>
+</item>
+<item historyLabel="Application.java" index="0">
+<position info="not_deleted" x="7269" y="107"/>
+</item>
+<item historyLabel="Application.java" index="0">
+<position info="not_deleted" x="8540" y="0"/>
+</item>
+<item historyLabel="Application.java" index="0">
+<position info="not_deleted" x="8564" y="0"/>
+</item>
+<item historyLabel="Application.java" index="0">
+<position info="not_deleted" x="7647" y="103"/>
+</item>
+<item historyLabel="Application.java" index="0">
+<position info="not_deleted" x="8168" y="0"/>
+</item>
+<item historyLabel="Application.java" index="0">
+<position info="not_deleted" x="8169" y="0"/>
+</item>
+<item historyLabel="Application.java" index="0">
 <position/>
 </item>
-<item historyLabel="pom.xml" index="1"/>
-<item historyLabel="TestSynchronizeOperation.java" index="2">
-<position info="not_deleted" x="1185" y="0"/>
+<item historyLabel="test.app.product" index="5"/>
+<item historyLabel="test.app.feature" index="6">
+<position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="pom.xml" index="1"/>
-<item historyLabel="TestSynchronizeOperation.java" index="2">
+<item historyLabel="test.app.product" index="5"/>
+<item historyLabel="SynchronizeOperation.class" index="7">
+<position info="not_deleted" x="81" y="0"/>
+</item>
+<item historyLabel="SynchronizeOperation.class" index="7">
+<position info="not_deleted" x="1518" y="0"/>
+</item>
+<item historyLabel="test.app.product" index="5"/>
+<item historyLabel="Application.java" index="0">
+<position info="not_deleted" x="9285" y="0"/>
+</item>
+<item historyLabel="Application.java" index="0">
+<position info="not_deleted" x="10050" y="0"/>
+</item>
+<item historyLabel="Application.java" index="0">
+<position info="not_deleted" x="11576" y="15"/>
+</item>
+<item historyLabel="Application.java" index="0">
 <position/>
 </item>
-<item historyLabel="pom.xml" index="1"/>
-<item historyLabel="TestSynchronizeOperation.java" index="2">
+<item active="true" historyLabel="Application.java" index="0">
 <position/>
-</item>
-<item historyLabel="TestSynchronizeOperation.java" index="2">
-<position/>
-</item>
-<item historyLabel="pom.xml" index="1"/>
-<item historyLabel="TestSynchronizeOperation.java" index="2">
-<position info="not_deleted" x="3086" y="0"/>
-</item>
-<item historyLabel="pom.xml" index="1"/>
-<item historyLabel="pom.xml" index="0"/>
-<item historyLabel="TestSynchronizeOperation.java" index="2">
-<position info="not_deleted" x="3086" y="0"/>
-</item>
-<item historyLabel="TestSynchronizeOperation.java" index="2">
-<position info="not_deleted" x="1251" y="0"/>
-</item>
-<item historyLabel="TestSynchronizeOperation.java" index="2">
-<position info="not_deleted" x="2572" y="0"/>
-</item>
-<item historyLabel="TestSynchronizeOperation.java" index="2">
-<position/>
-</item>
-<item historyLabel="pom.xml" index="0">
-<position/>
-</item>
-<item historyLabel="pom.xml" index="1"/>
-<item historyLabel="TestSynchronizeOperation.java" index="2">
-<position/>
-</item>
-<item historyLabel="TestSynchronizeOperation.java" index="2">
-<position/>
-</item>
-<item historyLabel="TestSynchronizeOperation.java" index="2">
-<position/>
-</item>
-<item historyLabel="TestSynchronizeOperation.java" index="2">
-<position/>
-</item>
-<item historyLabel="TestSynchronizeOperation.java" index="2">
-<position/>
-</item>
-<item historyLabel="TestSynchronizeOperation.java" index="2">
-<position/>
-</item>
-<item historyLabel="TestSynchronizeOperation.java" index="2">
-<position info="not_deleted" x="1666" y="0"/>
-</item>
-<item historyLabel="TestSynchronizeOperation.java" index="2">
-<position info="not_deleted" x="1780" y="0"/>
-</item>
-<item historyLabel="TestSynchronizeOperation.java" index="2">
-<position info="not_deleted" x="1868" y="1"/>
-</item>
-<item historyLabel="TestSynchronizeOperation.java" index="2">
-<position info="not_deleted" x="1936" y="0"/>
-</item>
-<item historyLabel="TestSynchronizeOperation.java" index="2">
-<position info="not_deleted" x="1979" y="0"/>
-</item>
-<item historyLabel="TestSynchronizeOperation.java" index="2">
-<position info="not_deleted" x="2012" y="0"/>
-</item>
-<item historyLabel="TestSynchronizeOperation.java" index="2">
-<position info="not_deleted" x="505" y="0"/>
-</item>
-<item historyLabel="pom.xml" index="1"/>
-<item historyLabel="TestSynchronizeOperation.java" index="2">
-<position info="not_deleted" x="505" y="0"/>
-</item>
-<item historyLabel="pom.xml" index="1"/>
-<item historyLabel="TestSynchronizeOperation.java" index="2">
-<position info="not_deleted" x="505" y="0"/>
-</item>
-<item historyLabel="pom.xml" index="1"/>
-<item historyLabel="TestSynchronizeOperation.java" index="2">
-<position info="not_deleted" x="505" y="0"/>
-</item>
-<item historyLabel="pom.xml" index="3"/>
-<item historyLabel="TestSynchronizeOperation.java" index="2">
-<position info="not_deleted" x="505" y="0"/>
-</item>
-<item historyLabel="pom.xml" index="4"/>
-<item historyLabel="TestSynchronizeOperation.java" index="2">
-<position info="not_deleted" x="505" y="0"/>
-</item>
-<item historyLabel="pom.xml" index="5"/>
-<item historyLabel="TestSynchronizeOperation.java" index="2">
-<position info="not_deleted" x="505" y="0"/>
-</item>
-<item historyLabel="pom.xml" index="0"/>
-<item historyLabel="TestSynchronizeOperation.java" index="2">
-<position info="not_deleted" x="505" y="0"/>
-</item>
-<item historyLabel="test.app.product" index="6"/>
-<item historyLabel="TestSynchronizeOperation.java" index="2">
-<position info="not_deleted" x="505" y="0"/>
-</item>
-<item historyLabel="test.app.feature" index="7"/>
-<item active="true" historyLabel="TestSynchronizeOperation.java" index="2">
-<position info="not_deleted" x="505" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -380,7 +413,6 @@
 <trimItem IMemento.internal.id="right"/>
 </trimArea>
 <trimArea IMemento.internal.id="128">
-<trimItem IMemento.internal.id="org.eclipse.mylyn.tasks.ui.trim.container"/>
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.WorkbenchWindow.topBar"/>
 </trimArea>
 <trimArea IMemento.internal.id="1024">
@@ -392,6 +424,21 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.pde.ui.featureEditor" name="feature.xml" tooltip="test.app.feature/feature.xml">
+<persistable path="/test.app.feature/feature.xml"/>
+</file>
+<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="System.class" tooltip="java.lang.System">
+<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=test.app/C:\/java\/jre6u23\/lib\/rt.jar&lt;java.lang(System.class"/>
+</file>
+<file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="SynchronizeOperation.class" tooltip="org.eclipse.equinox.p2.operations.SynchronizeOperation">
+<persistable org.eclipse.jdt.ui.ClassFileIdentifier="=test.app/C:\/eclipse\/3.7.0RC1I1\/plugins\/org.eclipse.equinox.p2.operations_2.1.0.v20110511-1821.jar&lt;org.eclipse.equinox.p2.operations(SynchronizeOperation.class"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="pom.xml" tooltip="test.releng/pom.xml">
+<persistable path="/test.releng/pom.xml"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.pde.ui.productEditor" name="test.app.product" tooltip="test.app.product/test.app.product">
+<persistable path="/test.app.product/test.app.product"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.pde.ui.manifestEditor" name="MANIFEST.MF" tooltip="test/META-INF/MANIFEST.MF">
 <persistable path="/test/META-INF/MANIFEST.MF"/>
 </file>
@@ -413,9 +460,6 @@
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart" name="pom.xml" tooltip="test.app.product/pom.xml">
 <persistable path="/test.app.product/pom.xml"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart" name="pom.xml" tooltip="test.releng/pom.xml">
-<persistable path="/test.releng/pom.xml"/>
-</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.pde.ui.featureEditor" name="feature.xml" tooltip="payload.feature/feature.xml">
 <persistable path="/payload.feature/feature.xml"/>
 </file>
@@ -424,18 +468,6 @@
 </file>
 <file factoryID="org.eclipse.jdt.ui.ClassFileEditorInputFactory" id="org.eclipse.jdt.ui.ClassFileEditor" name="Iterable.class" tooltip="java.lang.Iterable">
 <persistable org.eclipse.jdt.ui.ClassFileIdentifier="=payload/C:\/java\/jre6u23\/lib\/rt.jar&lt;java.lang(Iterable.class"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="None.java" tooltip="test.app/src/test/app/optionmonad/None.java">
-<persistable path="/test.app/src/test/app/optionmonad/None.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.pde.ui.productEditor" name="test.app.product" tooltip="test.app.product/test.app.product">
-<persistable path="/test.app.product/test.app.product"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Some.java" tooltip="test.app/src/test/app/optionmonad/Some.java">
-<persistable path="/test.app/src/test/app/optionmonad/Some.java"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.pde.ui.featureEditor" name="feature.xml" tooltip="test.app.feature/feature.xml">
-<persistable path="/test.app.feature/feature.xml"/>
 </file>
 </mruList>
 </workbench>

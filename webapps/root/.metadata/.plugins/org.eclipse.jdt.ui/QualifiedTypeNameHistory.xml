@@ -13,7 +13,6 @@
 <fullyQualifiedTypeName name="test.app.optionmonad.Option"/>
 <fullyQualifiedTypeName name="test.app.optionmonad.Some"/>
 <fullyQualifiedTypeName name="org.eclipse.equinox.p2.query.IQueryable"/>
-<fullyQualifiedTypeName name="org.eclipse.equinox.p2.metadata.IInstallableUnit"/>
 <fullyQualifiedTypeName name="org.eclipse.core.runtime.Status"/>
 <fullyQualifiedTypeName name="org.eclipse.equinox.p2.metadata.IVersionedId"/>
 <fullyQualifiedTypeName name="org.eclipse.equinox.p2.metadata.VersionedId"/>
@@ -25,8 +24,11 @@
 <fullyQualifiedTypeName name="org.eclipse.equinox.p2.core.ProvisionException"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="java.io.IOException"/>
-<fullyQualifiedTypeName name="java.lang.RuntimeException"/>
 <fullyQualifiedTypeName name="org.eclipse.equinox.internal.provisional.configurator.Configurator"/>
 <fullyQualifiedTypeName name="org.osgi.util.tracker.ServiceTracker"/>
 <fullyQualifiedTypeName name="test.TestSynchronizeOperation"/>
+<fullyQualifiedTypeName name="org.eclipse.core.runtime.NullProgressMonitor"/>
+<fullyQualifiedTypeName name="org.eclipse.equinox.p2.metadata.IInstallableUnit"/>
+<fullyQualifiedTypeName name="java.lang.IllegalStateException"/>
+<fullyQualifiedTypeName name="java.lang.RuntimeException"/>
 </qualifiedTypeNameHistroy>

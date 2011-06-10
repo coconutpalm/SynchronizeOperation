@@ -3,12 +3,12 @@ package test.app;
 import static test.app.optionmonad.None.none;
 import static test.app.optionmonad.Some.some;
 
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -183,20 +183,83 @@ public class Application implements IApplication {
 				return status.error(e.getMessage(), e);
 			}
 		}
+		
+		// Unpack the URIs we got on the command line.  The 0th one is the system repo; the others
+		// are application content
+		URI[] baseURIs = new URI[] { siteURIs[0] };
+		URI[] newContentURIs = new URI[siteURIs.length-1];
+		System.arraycopy(siteURIs, 1, newContentURIs, 0, newContentURIs.length);
 
-		// Convert those update site URIs into something we can query...
-		Option<IQueryable<IInstallableUnit>> maybeAllRepos = createIUQueryable(siteURIs, agent, monitor);
-		if (!maybeAllRepos.hasValue()) {
-			return maybeAllRepos.getStatus();
+		// Convert URIs into something we can query...
+		Option<IQueryable<IInstallableUnit>> maybeNewIURepos = createIUQueryable(newContentURIs, agent, monitor);
+		if (!maybeNewIURepos.hasValue()) {
+			return maybeNewIURepos.getStatus();
 		}
-		IQueryable<IInstallableUnit> allRepos = maybeAllRepos.get();
+		IQueryable<IInstallableUnit> newIURepos = maybeNewIURepos.get();
 		
 		/*
-		 * Query the metadata repository for the feature to install.
+		 * Query the metadata repository for the feature(s) to install.
 		 */
-		Collection<IInstallableUnit> toInstall = allRepos.query(
+		Collection<IInstallableUnit> toInstall = newIURepos.query(
 				QueryUtil.createIUAnyQuery(), new NullProgressMonitor())
 				.toUnmodifiableSet();
+		
+		log(status.info("IUs for new features:"));
+		logQueryResults(toInstall);
+		
+		// Add dependencies we always want to keep
+		Option<IQueryable<IInstallableUnit>> maybeSystemRepo = createIUQueryable(baseURIs, agent, monitor);
+		if (!maybeSystemRepo.hasValue()) {
+			return maybeSystemRepo.getStatus();
+		}
+		IQueryable<IInstallableUnit> systemRepo = maybeSystemRepo.get();
+		
+		log(status.info("IUs in systemRepo:"));
+		logQueryResults(systemRepo.query(
+				QueryUtil.createIUAnyQuery(), new NullProgressMonitor())
+				.toUnmodifiableSet());
+		
+		log(status.info("Querying for system repos:"));
+
+//		Option<IInstallableUnit> rcp = queryForIU(systemRepo, new VersionedId("org.eclipse.rcp", "0.0.0"));
+//		if (!rcp.hasValue()) {
+//			log(status.error("Unable to query for org.eclipse.rcp", new RuntimeException()));
+//			return rcp.getStatus();
+//		}
+//		toInstall.add(rcp.get());
+//		
+//		Option<IInstallableUnit> thisApp = queryForIU(systemRepo, new VersionedId("test.app.feature.feature.group", "0.0.0"));
+//		if (!thisApp.hasValue()) {
+//			log(status.error("Unable to query for test.app.feature.feature.group", new RuntimeException()));
+//			return thisApp.getStatus();
+//		}
+//		toInstall.add(thisApp.get());
+		
+		// Seems to be required but causes error
+		Option<IInstallableUnit> product = queryForIU(systemRepo, new VersionedId("test.app.product", "0.0.0"));
+		if (!product.hasValue()) {
+			log(status.error("Unable to query for test.app.product", new RuntimeException()));
+			return product.getStatus();
+		}
+		toInstall.add(product.get());
+
+		// No effect if it's there or not
+//		Option<IInstallableUnit> productExeEclipse = queryForIU(systemRepo, new VersionedId("test.app.product.executable.win32.win32.x86.eclipse", "0.0.0"));
+//		if (!productExeEclipse.hasValue()) {
+//			log(status.error("Unable to query for test.app.product.executable.eclipse", new RuntimeException()));
+//			return productExeEclipse.getStatus();
+//		}
+//		toInstall.add(productExeEclipse.get());
+		
+		// Has to be there
+		Option<IInstallableUnit> productExe = queryForIU(systemRepo, new VersionedId("test.app.product.executable.win32.win32.x86", "0.0.0"));
+		if (!productExe.hasValue()) {
+			log(status.error("Unable to query for test.app.product.executable", new RuntimeException()));
+			return productExe.getStatus();
+		}
+		toInstall.add(productExe.get());
+		
+		log(status.info("Everything to synchronize:"));
 		logQueryResults(toInstall);
 
 		/*
@@ -228,8 +291,21 @@ public class Application implements IApplication {
 		return opStatus;
 	}
 
+	private Option<IInstallableUnit> queryForIU(IQueryable<IInstallableUnit> allRepos, VersionedId versionedId) {
+		Iterator<IInstallableUnit> queryResultsIterator = allRepos
+				.query(QueryUtil.createIUQuery(
+						versionedId), 
+						new NullProgressMonitor())
+							.toUnmodifiableSet().iterator();
+		if (queryResultsIterator.hasNext()) {
+			return some(queryResultsIterator.next());
+		} else {
+			return none();
+		}
+	}
+
 	private void logQueryResults(Collection<IInstallableUnit> toInstall) {
-		StringBuffer iuNames = new StringBuffer("IUs in queried repositories:\n ");
+		StringBuffer iuNames = new StringBuffer("IUs:\n\n ");
 		for (IInstallableUnit iu : toInstall) {
 			iuNames.append(iu.getId() + iu.getVersion() + "\n ");
 		}

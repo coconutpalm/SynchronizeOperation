@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <typeInfoHistroy>
-<typeInfo handle="=test.app/src&lt;test.app.optionmonad{Some.java[Some" modifiers="17" timestamp="1304642859484"/>
-<typeInfo handle="=test.app/src&lt;test.app.optionmonad{None.java[None" modifiers="17" timestamp="1304697062528"/>
+<typeInfo handle="=test.app/src&lt;test.app.optionmonad{Some.java[Some" modifiers="17" timestamp="1306350083145"/>
+<typeInfo handle="=test.app/src&lt;test.app.optionmonad{None.java[None" modifiers="17" timestamp="1306350083129"/>
 <typeInfo handle="=payload/C:\/java\/jre6u23\/lib\/rt.jar&lt;java.lang(Iterable.class[Iterable" modifiers="1537" timestamp="1294779681516"/>
 </typeInfoHistroy>

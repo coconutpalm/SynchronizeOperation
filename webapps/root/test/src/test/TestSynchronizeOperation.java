@@ -6,7 +6,7 @@ public class TestSynchronizeOperation extends IntegrationTestCase {
 	// Default paths.  Change this to where you exported the test product.
 	private static String FIXTURE_LOCATION = "c:/temp/test.app";
 	private static String FIXTURE_LOCATION_BIN = FIXTURE_LOCATION + "/eclipse";
-	private static String FIXTURE_LOCATION_REPO = " file:///" + FIXTURE_LOCATION + "/repository\"";
+	private static String FIXTURE_LOCATION_REPO = "\"file:///" + FIXTURE_LOCATION + "/repository ";
 
 	// The variables we use to find the test product during a Maven/Tycho build.
 	private static final String FIXTURE_LOCATION_PROP = "osgi.install.area";
@@ -16,9 +16,13 @@ public class TestSynchronizeOperation extends IntegrationTestCase {
 	// This assumes that the whole workspace is located inside a Jetty or similar web root
 	public static final String FIXTURE_ROOT = "\"http://localhost:8080/";
 	protected static final String SITE_BASE = FIXTURE_ROOT + "payload.site";
-	protected static final String SITE400_FIXTURE = SITE_BASE + "_4.0.0" + FIXTURE_LOCATION_REPO;
-	protected static final String SITE401_FIXTURE = SITE_BASE + "_4.0.1" + FIXTURE_LOCATION_REPO;
-	protected static final String SITE500_FIXTURE = SITE_BASE + "_5.0.0" + FIXTURE_LOCATION_REPO;
+//	protected static String SITE400_FIXTURE = SITE_BASE + "_4.0.0";
+//	protected static String SITE401_FIXTURE = SITE_BASE + "_4.0.1";
+//	protected static String SITE500_FIXTURE = SITE_BASE + "_5.0.0";
+	// convention: Base repo is the 0th item, additional repos after that
+	protected static String SITE400_FIXTURE = FIXTURE_LOCATION_REPO + SITE_BASE + "_4.0.0\"";
+	protected static String SITE401_FIXTURE = FIXTURE_LOCATION_REPO + SITE_BASE + "_4.0.1\"";
+	protected static String SITE500_FIXTURE = FIXTURE_LOCATION_REPO + SITE_BASE + "_5.0.0\"";
 	
 	private void setPaths() {
 		/*
@@ -46,13 +50,15 @@ public class TestSynchronizeOperation extends IntegrationTestCase {
 		}
 		System.err.println("FOUND:  " + systemPropertyFixtureLocation);
 		FIXTURE_LOCATION_BIN = FIXTURE_LOCATION;
-		FIXTURE_LOCATION_REPO = " file:///" + systemPropertyFixtureLocation + "test.app.product/target/repository\"";
+		FIXTURE_LOCATION_REPO = "\"file:///" + systemPropertyFixtureLocation + "test.app.product/target/repository ";
+//		SITE400_FIXTURE = SITE_BASE + "_4.0.0";
+//		SITE401_FIXTURE = SITE_BASE + "_4.0.1";
+//		SITE500_FIXTURE = SITE_BASE + "_5.0.0";
+		SITE400_FIXTURE = FIXTURE_LOCATION_REPO + SITE_BASE + "_4.0.0\"";
+		SITE401_FIXTURE = FIXTURE_LOCATION_REPO + SITE_BASE + "_4.0.1\"";
+		SITE500_FIXTURE = FIXTURE_LOCATION_REPO + SITE_BASE + "_5.0.0\"";
 	}
 	
-	/*
-	 * TODO: Make Maven build for all this.  We can find where test.app is built using Maven
-	 * variables at http://docs.codehaus.org/display/MAVENUSER/MavenPropertiesGuide
-	 */
 	public void test_InstallSomething() throws Exception {
 		setPaths();
 		

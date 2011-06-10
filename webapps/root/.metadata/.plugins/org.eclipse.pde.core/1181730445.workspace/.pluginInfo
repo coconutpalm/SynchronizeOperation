@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<map>
-	<bundle bundleID="454" class="test.Activator" localization="OSGI-INF/l10n/bundle" name="Test" project="test"/>
-	<bundle bundleID="455" class="payload.Activator" localization="OSGI-INF/l10n/bundle" name="Payload" project="payload"/>
-	<bundle bundleID="456" class="test.app.Activator" localization="OSGI-INF/l10n/bundle" name="App" project="test.app"/>
-</map>
