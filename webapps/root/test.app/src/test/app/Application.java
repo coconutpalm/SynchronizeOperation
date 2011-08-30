@@ -174,6 +174,15 @@ public class Application implements IApplication {
 			return new Status(Status.ERROR, Activator.PLUGIN_ID,
 					"No site URL specified. Pass -DsiteUrl as a system argument.");
 		}
+		
+		if (siteUrlPackage.startsWith("\"")) {
+			siteUrlPackage = siteUrlPackage.substring(1);
+		}
+		if (siteUrlPackage.endsWith("\"")) {
+			siteUrlPackage = siteUrlPackage.substring(0, siteUrlPackage.length()-2);
+		}
+		log(status.info("Synch repos: " + siteUrlPackage));
+		
 		String[] siteUrlStrings = siteUrlPackage.split(" ");
 		URI[] siteURIs = new URI[siteUrlStrings.length];
 		for (int i = 0; i < siteURIs.length; i++) {
@@ -252,9 +261,11 @@ public class Application implements IApplication {
 //		toInstall.add(productExeEclipse.get());
 		
 		// Has to be there
-		Option<IInstallableUnit> productExe = queryForIU(systemRepo, new VersionedId("test.app.product.executable.win32.win32.x86", "0.0.0"));
+//		VersionedId exeId = new VersionedId("test.app.product.executable.win32.win32.x86", "0.0.0");
+		VersionedId exeId = new VersionedId("test.app.product.executable.linux.gtk.x86.eclipse", "0.0.0");
+		Option<IInstallableUnit> productExe = queryForIU(systemRepo, exeId);
 		if (!productExe.hasValue()) {
-			log(status.error("Unable to query for test.app.product.executable", new RuntimeException()));
+			log(status.error("Unable to query for test.app.product.executable: " + exeId, new RuntimeException()));
 			return productExe.getStatus();
 		}
 		toInstall.add(productExe.get());

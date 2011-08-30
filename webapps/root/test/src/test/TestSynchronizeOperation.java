@@ -51,6 +51,7 @@ public class TestSynchronizeOperation extends IntegrationTestCase {
 		System.err.println("FOUND:  " + systemPropertyFixtureLocation);
 		FIXTURE_LOCATION_BIN = FIXTURE_LOCATION;
 		FIXTURE_LOCATION_REPO = "\"file:///" + systemPropertyFixtureLocation + "test.app.product/target/repository ";
+		
 //		SITE400_FIXTURE = SITE_BASE + "_4.0.0";
 //		SITE401_FIXTURE = SITE_BASE + "_4.0.1";
 //		SITE500_FIXTURE = SITE_BASE + "_5.0.0";
