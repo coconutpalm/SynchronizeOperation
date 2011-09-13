@@ -32,8 +32,8 @@ public class IntegrationTestCase extends TestCase {
 		if(!(new File(execTargetString).exists())){
 			execTargetString = testHarnessPath + File.separator + ECLIPSE_EXE;
 		}
-		execTargetString += " -vmargs -D" + SITE_URL_PROPERTY + "=" + fixture;
-				
+		execTargetString += " -vmargs -D" + SITE_URL_PROPERTY + "=" + fixture  + " -Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,address=8787,server=y,suspend=y"; 
+		
 		System.out.println(execTargetString);
 		
 		Process p = runtime.exec(execTargetString, null, new File(testHarnessPath));

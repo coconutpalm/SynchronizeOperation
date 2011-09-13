@@ -6,13 +6,10 @@ import static test.app.optionmonad.Some.some;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.List;
+import java.util.Set;
 
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -21,18 +18,17 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
-import org.eclipse.equinox.internal.provisional.configurator.Configurator;
 import org.eclipse.equinox.p2.core.IProvisioningAgent;
 import org.eclipse.equinox.p2.core.IProvisioningAgentProvider;
 import org.eclipse.equinox.p2.core.ProvisionException;
 import org.eclipse.equinox.p2.engine.IProfile;
 import org.eclipse.equinox.p2.engine.IProfileRegistry;
+import org.eclipse.equinox.p2.engine.query.UserVisibleRootQuery;
 import org.eclipse.equinox.p2.metadata.IInstallableUnit;
-import org.eclipse.equinox.p2.metadata.IVersionedId;
-import org.eclipse.equinox.p2.metadata.VersionedId;
 import org.eclipse.equinox.p2.operations.ProvisioningJob;
 import org.eclipse.equinox.p2.operations.ProvisioningSession;
 import org.eclipse.equinox.p2.operations.SynchronizeOperation;
+import org.eclipse.equinox.p2.query.IQueryResult;
 import org.eclipse.equinox.p2.query.IQueryable;
 import org.eclipse.equinox.p2.query.QueryUtil;
 import org.eclipse.equinox.p2.repository.artifact.IArtifactRepositoryManager;
@@ -44,14 +40,8 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.update.configuration.IConfiguredSite;
-import org.eclipse.update.configuration.IInstallConfiguration;
-import org.eclipse.update.core.IFeatureReference;
-import org.eclipse.update.core.SiteManager;
-import org.eclipse.update.core.VersionedIdentifier;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
-import org.osgi.util.tracker.ServiceTracker;
 
 import test.app.optionmonad.Option;
 
@@ -150,14 +140,12 @@ public class Application implements IApplication {
 	}
 
 	private void logInstalledFeatures(IProvisioningAgent agent) {
-//		IVersionedId[] installedFeatures = getInstalledFeatures(agent, null);
-//		for (IVersionedId id : installedFeatures) {
-//			System.err.println(id.toString());
-//		}
-		// Can't figure out how to do this using P2, so reverting to legacy...
-		List<String> features = getInstalledFeatures();
-		for (String featureName : features) {
-			System.err.println(featureName);
+		IProfileRegistry pr = (IProfileRegistry) agent.getService(IProfileRegistry.SERVICE_NAME);
+		IProfile currentProfile = pr.getProfile(IProfileRegistry.SELF);
+		IQueryResult<IInstallableUnit> roots = currentProfile.query(new UserVisibleRootQuery(), new NullProgressMonitor());
+		Set<IInstallableUnit> ius = roots.toUnmodifiableSet();
+		for (IInstallableUnit iu : ius) {
+			System.err.println(iu.getId() + '_' + iu.getVersion());
 		}
 	}
 
@@ -175,15 +163,9 @@ public class Application implements IApplication {
 					"No site URL specified. Pass -DsiteUrl as a system argument.");
 		}
 		
-		if (siteUrlPackage.startsWith("\"")) {
-			siteUrlPackage = siteUrlPackage.substring(1);
-		}
-		if (siteUrlPackage.endsWith("\"")) {
-			siteUrlPackage = siteUrlPackage.substring(0, siteUrlPackage.length()-2);
-		}
 		log(status.info("Synch repos: " + siteUrlPackage));
 		
-		String[] siteUrlStrings = siteUrlPackage.split(" ");
+		String[] siteUrlStrings = siteUrlPackage.split(",");
 		URI[] siteURIs = new URI[siteUrlStrings.length];
 		for (int i = 0; i < siteURIs.length; i++) {
 			try {
@@ -193,83 +175,17 @@ public class Application implements IApplication {
 			}
 		}
 		
-		// Unpack the URIs we got on the command line.  The 0th one is the system repo; the others
-		// are application content
-		URI[] baseURIs = new URI[] { siteURIs[0] };
-		URI[] newContentURIs = new URI[siteURIs.length-1];
-		System.arraycopy(siteURIs, 1, newContentURIs, 0, newContentURIs.length);
-
 		// Convert URIs into something we can query...
-		Option<IQueryable<IInstallableUnit>> maybeNewIURepos = createIUQueryable(newContentURIs, agent, monitor);
+		Option<IQueryable<IInstallableUnit>> maybeNewIURepos = createIUQueryable(siteURIs, agent, monitor);
 		if (!maybeNewIURepos.hasValue()) {
 			return maybeNewIURepos.getStatus();
 		}
-		IQueryable<IInstallableUnit> newIURepos = maybeNewIURepos.get();
+		IQueryable<IInstallableUnit> allTheIUs = maybeNewIURepos.get();
 		
 		/*
-		 * Query the metadata repository for the feature(s) to install.
+		 * Query the metadata repository(ies) for the feature(s) to install.
 		 */
-		Collection<IInstallableUnit> toInstall = newIURepos.query(
-				QueryUtil.createIUAnyQuery(), new NullProgressMonitor())
-				.toUnmodifiableSet();
-		
-		log(status.info("IUs for new features:"));
-		logQueryResults(toInstall);
-		
-		// Add dependencies we always want to keep
-		Option<IQueryable<IInstallableUnit>> maybeSystemRepo = createIUQueryable(baseURIs, agent, monitor);
-		if (!maybeSystemRepo.hasValue()) {
-			return maybeSystemRepo.getStatus();
-		}
-		IQueryable<IInstallableUnit> systemRepo = maybeSystemRepo.get();
-		
-		log(status.info("IUs in systemRepo:"));
-		logQueryResults(systemRepo.query(
-				QueryUtil.createIUAnyQuery(), new NullProgressMonitor())
-				.toUnmodifiableSet());
-		
-		log(status.info("Querying for system repos:"));
-
-//		Option<IInstallableUnit> rcp = queryForIU(systemRepo, new VersionedId("org.eclipse.rcp", "0.0.0"));
-//		if (!rcp.hasValue()) {
-//			log(status.error("Unable to query for org.eclipse.rcp", new RuntimeException()));
-//			return rcp.getStatus();
-//		}
-//		toInstall.add(rcp.get());
-//		
-//		Option<IInstallableUnit> thisApp = queryForIU(systemRepo, new VersionedId("test.app.feature.feature.group", "0.0.0"));
-//		if (!thisApp.hasValue()) {
-//			log(status.error("Unable to query for test.app.feature.feature.group", new RuntimeException()));
-//			return thisApp.getStatus();
-//		}
-//		toInstall.add(thisApp.get());
-		
-		// Seems to be required but causes error
-		Option<IInstallableUnit> product = queryForIU(systemRepo, new VersionedId("test.app.product", "0.0.0"));
-		if (!product.hasValue()) {
-			log(status.error("Unable to query for test.app.product", new RuntimeException()));
-			return product.getStatus();
-		}
-		toInstall.add(product.get());
-
-		// No effect if it's there or not
-//		Option<IInstallableUnit> productExeEclipse = queryForIU(systemRepo, new VersionedId("test.app.product.executable.win32.win32.x86.eclipse", "0.0.0"));
-//		if (!productExeEclipse.hasValue()) {
-//			log(status.error("Unable to query for test.app.product.executable.eclipse", new RuntimeException()));
-//			return productExeEclipse.getStatus();
-//		}
-//		toInstall.add(productExeEclipse.get());
-		
-		// Has to be there
-//		VersionedId exeId = new VersionedId("test.app.product.executable.win32.win32.x86", "0.0.0");
-		VersionedId exeId = new VersionedId("test.app.product.executable.linux.gtk.x86.eclipse", "0.0.0");
-		Option<IInstallableUnit> productExe = queryForIU(systemRepo, exeId);
-		if (!productExe.hasValue()) {
-			log(status.error("Unable to query for test.app.product.executable: " + exeId, new RuntimeException()));
-			return productExe.getStatus();
-		}
-		toInstall.add(productExe.get());
-		
+		Collection<IInstallableUnit> toInstall = allTheIUs.query(QueryUtil.createIUGroupQuery(), new NullProgressMonitor()).toUnmodifiableSet();		
 		log(status.info("Everything to synchronize:"));
 		logQueryResults(toInstall);
 
@@ -277,8 +193,7 @@ public class Application implements IApplication {
 		 * Run the operation modally so that a status can be returned to
 		 * the caller.
 		 */
-		SubMonitor sub = SubMonitor.convert(monitor,
-				"Installing new features...", 200);
+		SubMonitor sub = SubMonitor.convert(monitor, "Installing new features...", 200);
 
 		SynchronizeOperation operation = new SynchronizeOperation(session, toInstall);
 		IStatus opStatus = operation.resolveModal(sub.newChild(100));
@@ -289,30 +204,8 @@ public class Application implements IApplication {
 				throw new OperationCanceledException();
 		}
 		
-//		Configurator configurator = getConfigurator();
-//		if (configurator == null)
-//			return status.error("Configurator is null; can't commit configuration changes", new RuntimeException());
-//		try {
-//			configurator.applyConfiguration();
-//		} catch (IOException e) {
-//			return status.error("Could not apply configuration", e);
-//		}
-		
 		logInstalledFeatures(agent);
 		return opStatus;
-	}
-
-	private Option<IInstallableUnit> queryForIU(IQueryable<IInstallableUnit> allRepos, VersionedId versionedId) {
-		Iterator<IInstallableUnit> queryResultsIterator = allRepos
-				.query(QueryUtil.createIUQuery(
-						versionedId), 
-						new NullProgressMonitor())
-							.toUnmodifiableSet().iterator();
-		if (queryResultsIterator.hasNext()) {
-			return some(queryResultsIterator.next());
-		} else {
-			return none();
-		}
 	}
 
 	private void logQueryResults(Collection<IInstallableUnit> toInstall) {
@@ -321,18 +214,6 @@ public class Application implements IApplication {
 			iuNames.append(iu.getId() + iu.getVersion() + "\n ");
 		}
 		log(status.info(iuNames.toString()));
-	}
-
-	private ServiceTracker configuratorTracker;
-	private synchronized Configurator getConfigurator() {
-		if (configuratorTracker == null) {
-			configuratorTracker = new ServiceTracker(
-					Activator.getContext(),
-					org.eclipse.equinox.internal.provisional.configurator.Configurator.class
-							.getName(), null);
-			configuratorTracker.open();
-		}
-		return (Configurator) configuratorTracker.getService();
 	}
 
 	private Option<IQueryable<IInstallableUnit>> createIUQueryable(URI[] p2Sites, IProvisioningAgent agent, IProgressMonitor monitor) {
@@ -354,66 +235,6 @@ public class Application implements IApplication {
 		}
 		
 		return some(QueryUtil.compoundQueryable(metadataReposList));
-	}
-
-	/**
-	 * getInstalledFeatures retrieves you the list of installed features as
-	 * Eclipse sees it. It is often worth using this method and logging the list
-	 * of features before and after update operations. Note this is both
-	 * configured and non-configured features
-	 * 
-	 * @see IConfiguredSite#getFeatureReferences()
-	 * 
-	 * @return List of strings with all the installed feature names
-	 */
-	public static List<String> getInstalledFeatures() {
-		try {
-			List<String> result = new ArrayList<String>();
-			IInstallConfiguration config = SiteManager.getLocalSite().getCurrentConfiguration();
-			IConfiguredSite[] sites = config.getConfiguredSites();
-			for (IConfiguredSite configuredSite : sites) {
-				IFeatureReference[] featureReferences = configuredSite.getFeatureReferences();
-				for (IFeatureReference featureReference : featureReferences) {
-					VersionedIdentifier versionedIdentifier = featureReference.getVersionedIdentifier();
-					result.add(versionedIdentifier.getIdentifier() + versionedIdentifier.getVersion());
-				}
-			}
-			return result;
-		} catch (CoreException ex) {
-			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, 
-					"CoreException getting installed features:"+ex.getMessage()));
-			throw new RuntimeException(ex);
-		}
-	}
-
-	/**
-	 * Returns the set of features configured in the specified profile or the self profile if 
-	 * profileId is null.
-	 * 
-	 * @param agent A provisioning agent
-	 * @param profileId The profile ID or null for the Self profile.
-	 * @return
-	 */
-	public IVersionedId[] getInstalledFeatures(IProvisioningAgent agent, String profileId) {
-		IProfileRegistry profileRegistry = (IProfileRegistry) agent
-				.getService(IProfileRegistry.SERVICE_NAME);
-		if (profileRegistry == null)
-			return null;
-		if (profileId == null)
-			profileId = IProfileRegistry.SELF;
-
-		IProfile profile = profileRegistry.getProfile(profileId);
-		if (profile == null)
-			return null;
-		IInstallableUnit[] ius = (IInstallableUnit[]) profile.query(
-				QueryUtil.createIUGroupQuery(), null).toArray(
-				IInstallableUnit.class);
-		IVersionedId[] featureids = new IVersionedId[ius.length];
-		for (int i = 0; i < featureids.length; i++) {
-			featureids[i] = new VersionedId(ius[i].getId(), ius[i].getVersion()
-					.toString());
-		}
-		return featureids;
 	}
 
 	private Option<IProvisioningAgent> getProvisioningAgent() {
