@@ -32,7 +32,9 @@ public class IntegrationTestCase extends TestCase {
 		if(!(new File(execTargetString).exists())){
 			execTargetString = testHarnessPath + File.separator + ECLIPSE_EXE;
 		}
-		execTargetString += " -vmargs -D" + SITE_URL_PROPERTY + "=" + fixture  + " -Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,address=8787,server=y,suspend=y"; 
+		// For remote debugging use the version including -Xdebug...
+//		execTargetString += " -vmargs -D" + SITE_URL_PROPERTY + "=" + fixture  + " -Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,address=8787,server=y,suspend=y"; 
+		execTargetString += " -vmargs -D" + SITE_URL_PROPERTY + "=" + fixture;
 		
 		System.out.println(execTargetString);
 		

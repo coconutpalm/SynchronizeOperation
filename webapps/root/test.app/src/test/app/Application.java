@@ -64,7 +64,13 @@ public class Application implements IApplication {
 			if (null == siteURLs) {
 				siteURLs = "";
 			}
-			if (synchronizeWith(siteURLs)) return IApplication.EXIT_RESTART;
+			
+			// Synchronize, and restart to apply changes if the sync operation did anything
+			if (synchronizeWithSitesInSystemProperty()) return IApplication.EXIT_RESTART;
+			
+			// In a real application we would start the Workbench here and exit after the
+			// Workbench shuts down, but this is a test fixture so we'll just exit, knowing 
+			// that if we get here nothing was updated.
 			return IApplication.EXIT_OK;
 		} finally {
 			display.dispose();
@@ -74,11 +80,10 @@ public class Application implements IApplication {
 	/**
 	 * Synchronize with the specified (space-delimited) set of URLs.
 	 * 
-	 * @param siteURLs 
 	 * @return true if we need to restart
 	 * @throws ProvisionException
 	 */
-	private boolean synchronizeWith(final String siteURLs) throws ProvisionException {
+	private boolean synchronizeWithSitesInSystemProperty() throws ProvisionException {
 		Option<IProvisioningAgent> maybeAgent = getProvisioningAgent();
 		final IProvisioningAgent agent = maybeAgent.getOrThrow(new ProvisionException(maybeAgent.getStatus()));
 		
@@ -105,7 +110,7 @@ public class Application implements IApplication {
 			public void run(IProgressMonitor monitor)
 					throws InvocationTargetException, InterruptedException {
 				try {
-					IStatus opStatus = synchronizeWith(agent, monitor, siteURLs);
+					IStatus opStatus = synchronizeWith(agent, monitor);
 					if (opStatus.getSeverity() != IStatus.ERROR) {
 						prefStore.setValue(JUSTUPDATED, true);
 						restartRequired[0] = true;
@@ -153,7 +158,7 @@ public class Application implements IApplication {
 	 * Needs error checking, cancel checking, etc.
 	 */
 	protected IStatus synchronizeWith(IProvisioningAgent agent,
-			IProgressMonitor monitor, String updateSiteURLs) {
+			IProgressMonitor monitor) {
 		ProvisioningSession session = new ProvisioningSession(agent);
 
 		// Get update site uris from system argument.
