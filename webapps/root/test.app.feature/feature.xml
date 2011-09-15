@@ -16,6 +16,10 @@
       [Enter License Description here.]
    </license>
 
+   <includes
+         id="org.eclipse.equinox.p2.director.backport.feature"
+         version="0.0.0"/>
+
    <plugin
          id="test.app"
          download-size="0"
