@@ -11,6 +11,7 @@ public class TestSynchronizeOperation extends IntegrationTestCase {
 	// The variables we use to find the test product during a Maven/Tycho build.
 	private static final String FIXTURE_LOCATION_PROP = "osgi.install.area";
 	private static final String RELATIVE_LOCATION_WIN32 = "test.app.product/target/products/test.app.product/win32/win32/x86";
+	private static final String RELATIVE_LOCATION_WIN32_64 = "test.app.product/target/products/test.app.product/win32/win32/x86_64";
 	private static final String RELATIVE_LOCATION_LINUX = "test.app.product/target/products/test.app.product/linux/gtk/x86";
 
 	// This assumes that the whole workspace is located inside a Jetty or similar web root
@@ -44,7 +45,12 @@ public class TestSynchronizeOperation extends IntegrationTestCase {
 				systemPropertyFixtureLocation.length() - "test/target/work/".length());
 		System.err.println("ROOT : " + systemPropertyFixtureLocation);
 		if (win32) {
-		    FIXTURE_LOCATION = systemPropertyFixtureLocation + RELATIVE_LOCATION_WIN32;
+			String word_size= System.getProperty("sun.arch.data.model");
+			if ("32".equals(word_size)) {
+				FIXTURE_LOCATION = systemPropertyFixtureLocation + RELATIVE_LOCATION_WIN32;
+			} else {
+				FIXTURE_LOCATION = systemPropertyFixtureLocation + RELATIVE_LOCATION_WIN32_64;
+			}
 		} else {
 		    FIXTURE_LOCATION = systemPropertyFixtureLocation + RELATIVE_LOCATION_LINUX;
 		}
